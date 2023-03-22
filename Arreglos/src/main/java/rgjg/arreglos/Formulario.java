@@ -4,6 +4,8 @@
  */
 package rgjg.arreglos;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author macbook
@@ -27,17 +29,23 @@ public class Formulario extends javax.swing.JFrame {
   private void initComponents() {
 
     jLabel1 = new javax.swing.JLabel();
-    jTextField1 = new javax.swing.JTextField();
-    jButton1 = new javax.swing.JButton();
+    txtNombre = new javax.swing.JTextField();
+    btnGuardar = new javax.swing.JButton();
 
     setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+    setTitle("Arreglos");
 
     jLabel1.setText("Nombre:");
 
-    jTextField1.setName("txtNombre"); // NOI18N
+    txtNombre.setName(""); // NOI18N
 
-    jButton1.setLabel("Guardar");
-    jButton1.setName("btnGuardar"); // NOI18N
+    btnGuardar.setLabel("Guardar");
+    btnGuardar.setName("btnGuardar"); // NOI18N
+    btnGuardar.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnGuardarActionPerformed(evt);
+      }
+    });
 
     javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
     getContentPane().setLayout(layout);
@@ -49,10 +57,10 @@ public class Formulario extends javax.swing.JFrame {
             .addGap(29, 29, 29)
             .addComponent(jLabel1)
             .addGap(28, 28, 28)
-            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
           .addGroup(layout.createSequentialGroup()
             .addGap(69, 69, 69)
-            .addComponent(jButton1)))
+            .addComponent(btnGuardar)))
         .addContainerGap(229, Short.MAX_VALUE))
     );
     layout.setVerticalGroup(
@@ -60,15 +68,22 @@ public class Formulario extends javax.swing.JFrame {
       .addGroup(layout.createSequentialGroup()
         .addGap(59, 59, 59)
         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-          .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+          .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
           .addComponent(jLabel1))
         .addGap(49, 49, 49)
-        .addComponent(jButton1)
+        .addComponent(btnGuardar)
         .addContainerGap(146, Short.MAX_VALUE))
     );
 
     pack();
   }// </editor-fold>//GEN-END:initComponents
+
+  private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+    // TODO add your handling code here:
+    String nombre = this.txtNombre.getText();
+    
+    JOptionPane.showMessageDialog(rootPane, "Seccion arreglos " + nombre);
+  }//GEN-LAST:event_btnGuardarActionPerformed
 
   /**
    * @param args the command line arguments
@@ -106,8 +121,8 @@ public class Formulario extends javax.swing.JFrame {
   }
 
   // Variables declaration - do not modify//GEN-BEGIN:variables
-  private javax.swing.JButton jButton1;
+  private javax.swing.JButton btnGuardar;
   private javax.swing.JLabel jLabel1;
-  private javax.swing.JTextField jTextField1;
+  private javax.swing.JTextField txtNombre;
   // End of variables declaration//GEN-END:variables
 }
