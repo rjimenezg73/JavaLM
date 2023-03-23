@@ -4,6 +4,9 @@
  */
 package rgjg.arreglos;
 
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 
 /**
@@ -31,6 +34,8 @@ public class Formulario extends javax.swing.JFrame {
     jLabel1 = new javax.swing.JLabel();
     txtNombre = new javax.swing.JTextField();
     btnGuardar = new javax.swing.JButton();
+    jScrollPane1 = new javax.swing.JScrollPane();
+    lstClientes = new javax.swing.JList<>();
 
     setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
     setTitle("Arreglos");
@@ -47,44 +52,73 @@ public class Formulario extends javax.swing.JFrame {
       }
     });
 
+    jScrollPane1.setViewportView(lstClientes);
+
     javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
     getContentPane().setLayout(layout);
     layout.setHorizontalGroup(
       layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addGroup(layout.createSequentialGroup()
+      .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+        .addGap(16, 16, 16)
+        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
           .addGroup(layout.createSequentialGroup()
-            .addGap(29, 29, 29)
-            .addComponent(jLabel1)
-            .addGap(28, 28, 28)
-            .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGap(40, 40, 40)
+            .addComponent(btnGuardar))
           .addGroup(layout.createSequentialGroup()
-            .addGap(69, 69, 69)
-            .addComponent(btnGuardar)))
-        .addContainerGap(229, Short.MAX_VALUE))
+            .addComponent(jLabel1)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)))
+        .addGap(24, 24, 24))
     );
     layout.setVerticalGroup(
       layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
       .addGroup(layout.createSequentialGroup()
-        .addGap(59, 59, 59)
-        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-          .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-          .addComponent(jLabel1))
-        .addGap(49, 49, 49)
-        .addComponent(btnGuardar)
-        .addContainerGap(146, Short.MAX_VALUE))
+        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+          .addGroup(layout.createSequentialGroup()
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+              .addGroup(layout.createSequentialGroup()
+                .addGap(87, 87, 87)
+                .addComponent(jLabel1))
+              .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(81, 81, 81)
+                .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)))
+            .addGap(49, 49, 49)
+            .addComponent(btnGuardar))
+          .addGroup(layout.createSequentialGroup()
+            .addGap(27, 27, 27)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE)))
+        .addContainerGap(27, Short.MAX_VALUE))
     );
 
     pack();
   }// </editor-fold>//GEN-END:initComponents
 
+  private List<String> lista = new ArrayList<String>();
+  
   private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
     // TODO add your handling code here:
     String nombre = this.txtNombre.getText();
     
-    JOptionPane.showMessageDialog(rootPane, "Seccion arreglos " + nombre);
+    lista.add(nombre);
+    actualizarLista();
+    JOptionPane.showMessageDialog(rootPane, "El Cliente se guardó correctamente: " + nombre);
   }//GEN-LAST:event_btnGuardarActionPerformed
-
+/**
+ * Ésta función nos permite actualizar el componente lista del formulario
+ * cada vez que demos clic en Guardar
+ */
+  private void actualizarLista(){
+    DefaultListModel datos = new DefaultListModel();
+    
+    for(int i = 0; i < lista.size(); i++){
+      String nombre = lista.get(i);
+      datos.addElement(nombre);
+    }
+    this.lstClientes.setModel(datos);
+  }
+  
   /**
    * @param args the command line arguments
    */
@@ -123,6 +157,8 @@ public class Formulario extends javax.swing.JFrame {
   // Variables declaration - do not modify//GEN-BEGIN:variables
   private javax.swing.JButton btnGuardar;
   private javax.swing.JLabel jLabel1;
+  private javax.swing.JScrollPane jScrollPane1;
+  private javax.swing.JList<String> lstClientes;
   private javax.swing.JTextField txtNombre;
   // End of variables declaration//GEN-END:variables
 }
