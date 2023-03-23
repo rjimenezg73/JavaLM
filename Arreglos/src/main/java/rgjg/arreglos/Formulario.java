@@ -36,6 +36,7 @@ public class Formulario extends javax.swing.JFrame {
     btnGuardar = new javax.swing.JButton();
     jScrollPane1 = new javax.swing.JScrollPane();
     lstClientes = new javax.swing.JList<>();
+    btnEliminar = new javax.swing.JButton();
 
     setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
     setTitle("Arreglos");
@@ -54,23 +55,32 @@ public class Formulario extends javax.swing.JFrame {
 
     jScrollPane1.setViewportView(lstClientes);
 
+    btnEliminar.setText("Eliminar");
+    btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnEliminarActionPerformed(evt);
+      }
+    });
+
     javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
     getContentPane().setLayout(layout);
     layout.setHorizontalGroup(
       layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+      .addGroup(layout.createSequentialGroup()
         .addGap(16, 16, 16)
-        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
-        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+          .addComponent(btnEliminar)
+          .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE))
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-          .addGroup(layout.createSequentialGroup()
-            .addGap(40, 40, 40)
-            .addComponent(btnGuardar))
-          .addGroup(layout.createSequentialGroup()
+          .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
             .addComponent(jLabel1)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)))
-        .addGap(24, 24, 24))
+            .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGap(24, 24, 24))
+          .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addComponent(btnGuardar)
+            .addGap(82, 82, 82))))
     );
     layout.setVerticalGroup(
       layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -84,12 +94,14 @@ public class Formulario extends javax.swing.JFrame {
               .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(81, 81, 81)
                 .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)))
-            .addGap(49, 49, 49)
+            .addGap(27, 27, 27)
             .addComponent(btnGuardar))
           .addGroup(layout.createSequentialGroup()
             .addGap(27, 27, 27)
             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE)))
-        .addContainerGap(27, Short.MAX_VALUE))
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+        .addComponent(btnEliminar)
+        .addContainerGap(32, Short.MAX_VALUE))
     );
 
     pack();
@@ -105,6 +117,16 @@ public class Formulario extends javax.swing.JFrame {
     actualizarLista();
     JOptionPane.showMessageDialog(rootPane, "El Cliente se guardó correctamente: " + nombre);
   }//GEN-LAST:event_btnGuardarActionPerformed
+
+  private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+    // TODO add your handling code here:
+    int indice = this.lstClientes.getSelectedIndex();
+    
+    lista.remove(indice);
+    //Una vez eliminado el índice se debe actualizar la lista para ver los cambios
+    actualizarLista();
+    JOptionPane.showMessageDialog(rootPane, "Se eliminó correctamente el elemento " + indice);
+  }//GEN-LAST:event_btnEliminarActionPerformed
 /**
  * Ésta función nos permite actualizar el componente lista del formulario
  * cada vez que demos clic en Guardar
@@ -155,6 +177,7 @@ public class Formulario extends javax.swing.JFrame {
   }
 
   // Variables declaration - do not modify//GEN-BEGIN:variables
+  private javax.swing.JButton btnEliminar;
   private javax.swing.JButton btnGuardar;
   private javax.swing.JLabel jLabel1;
   private javax.swing.JScrollPane jScrollPane1;
